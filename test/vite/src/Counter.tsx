@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
-export function Counter(props:{ label: string }){
+export function Counter(props: {
+   label: string 
+  }) {
   const [count, setCount] = useState(0)
   const title = `current: ${count}`
   return (

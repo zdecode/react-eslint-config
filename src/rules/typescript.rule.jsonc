@@ -5,6 +5,8 @@
 
   // ----------- 基础排版 -----------
 
+
+  
   // 统一使用 2 空格缩进
   "@stylistic/indent": ["error", 2],
   // 统一使用单引号；字符串内部含单引号时允许转义为双引号（avoidEscape）
@@ -65,34 +67,6 @@
   // 模板字符串花括号内部禁止空格
   "@stylistic/template-curly-spacing": ["error", "never"],
 
-  // ----------- TypeScript -----------
-
-  // 统一使用 interface 定义对象类型
-  "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
-  // 空接口仅在单继承时允许
-  "@typescript-eslint/no-empty-object-type": ["error", { "allowInterfaces": "with-single-extends" }],
-  // 允许使用 any
-  "@typescript-eslint/no-explicit-any": "off",
-  // 未使用变量校验
-  "@typescript-eslint/no-unused-vars": ["error", {
-    // 允许以下划线开头或名为 ignore 的变量
-    "varsIgnorePattern": "^_|^ignore$",
-    // 忽略 rest 解构同级的兄弟变量（便于从 ...props 排除某些值）
-    "ignoreRestSiblings": true,
-    // 允许函数参数以下划线开头
-    "argsIgnorePattern": "^_",
-    // 捕获错误变量以下划线开头时忽略
-    "caughtErrorsIgnorePattern": "^_"
-  }],
-  // 强制类型导入：import type { Foo } from '...'
-  "@typescript-eslint/consistent-type-imports": ["error", {
-    "prefer": "type-imports",
-    "disallowTypeAnnotations": true,
-    "fixStyle": "separate-type-imports"
-  }],
-
-  // ----------- JSX 排版（@stylistic/jsx-*） -----------
-
   // JSX 属性引号使用双引号
   "@stylistic/jsx-quotes": ["error", "prefer-double"],
   // 多行 JSX 标签每行最多 1 个属性
@@ -121,5 +95,268 @@
     "beforeClosing": "never"
   }],
   // 禁止 JSX 子元素之间多余空格
-  "@stylistic/jsx-child-element-spacing": "error"
+  "@stylistic/jsx-child-element-spacing": "error",
+
+
+  "@stylistic/block-spacing": "off",
+  "@stylistic/brace-style": [
+    "off",
+    "stroustrup",
+    {
+      "allowSingleLine": true
+    }
+  ],
+  "@stylistic/comma-style": [
+    "error",
+    "last"
+  ],
+  "@stylistic/computed-property-spacing": [
+    "error",
+    "never",
+    {
+      "enforceForClassMembers": true
+    }
+  ],
+  "@stylistic/dot-location": [
+    "error",
+    "property"
+  ],
+  "@stylistic/jsx-closing-tag-location": "off",
+  "@stylistic/jsx-curly-brace-presence": [
+    "error",
+    {
+      "propElementValues": "always"
+    }
+  ],
+  "@stylistic/jsx-curly-newline": "error",
+  "@stylistic/jsx-curly-spacing": [
+    "error",
+    "never"
+  ],
+  "@stylistic/jsx-equals-spacing": "error",
+  "@stylistic/jsx-function-call-newline": [
+    "error",
+    "multiline"
+  ],
+  "@stylistic/jsx-one-expression-per-line": "off",
+  "@stylistic/keyword-spacing": [
+    "error",
+    {
+      "after": true,
+      "before": true
+    }
+  ],
+  "@stylistic/lines-between-class-members": [
+    "error",
+    "always",
+    {
+      "exceptAfterSingleLine": true
+    }
+  ],
+  "@stylistic/max-statements-per-line": [
+    "error",
+    {
+      "max": 1
+    }
+  ],
+  "@stylistic/member-delimiter-style": [
+    "error",
+    {
+      "multiline": {
+        "delimiter": "none",
+        "requireLast": false
+      },
+      "multilineDetection": "brackets",
+      "overrides": {
+        "interface": {
+          "multiline": {
+            "delimiter": "none",
+            "requireLast": false
+          }
+        }
+      },
+      "singleline": {
+        "delimiter": "comma"
+      }
+    }
+  ],
+  "@stylistic/new-parens": "error",
+  "@stylistic/no-extra-parens": [
+    "error",
+    "functions"
+  ],
+  "@stylistic/no-floating-decimal": "error",
+  "@stylistic/no-mixed-operators": [
+    "error",
+    {
+      "allowSamePrecedence": true,
+      "groups": [
+        [
+          "==",
+          "!=",
+          "===",
+          "!==",
+          ">",
+          ">=",
+          "<",
+          "<="
+        ],
+        [
+          "&&",
+          "||"
+        ],
+        [
+          "in",
+          "instanceof"
+        ]
+      ]
+    }
+  ],
+  "@stylistic/no-mixed-spaces-and-tabs": "error",
+  "@stylistic/no-multiple-empty-lines": "off",
+  "@stylistic/no-tabs": "error",
+  "@stylistic/no-whitespace-before-property": "error",
+  "@stylistic/operator-linebreak": [
+    "error",
+    "before"
+  ],
+  "@stylistic/padded-blocks": [
+    "error",
+    {
+      "blocks": "never",
+      "classes": "never",
+      "switches": "never"
+    }
+  ],
+  "@stylistic/padding-line-between-statements": "off",
+  "@stylistic/quote-props": [
+    "error",
+    "consistent-as-needed"
+  ],
+  "@stylistic/rest-spread-spacing": [
+    "error",
+    "never"
+  ],
+  "@stylistic/semi-spacing": [
+    "error",
+    {
+      "after": true,
+      "before": false
+    }
+  ],
+  "@stylistic/space-before-blocks": [
+    "error",
+    "always"
+  ],
+  "@stylistic/space-before-function-paren": [
+    "error",
+    {
+      "anonymous": "always",
+      "asyncArrow": "always",
+      "named": "never"
+    }
+  ],
+
+  "@stylistic/space-unary-ops": [
+    "error",
+    {
+      "nonwords": false,
+      "words": true
+    }
+  ],
+  "@stylistic/spaced-comment": "off",
+  "@stylistic/template-tag-spacing": [
+    "error",
+    "never"
+  ],
+  "@stylistic/type-annotation-spacing": [
+    "error",
+    {}
+  ],
+  "@stylistic/type-generic-spacing": "error",
+  "@stylistic/type-named-tuple-spacing": "error",
+  "@stylistic/wrap-iife": [
+    "error",
+    "any",
+    {
+      "functionPrototypeMethods": true
+    }
+  ],
+  "@stylistic/yield-star-spacing": [
+    "error",
+    {
+      "after": true,
+      "before": false
+    }
+  ],
+
+  // ----------- TypeScript -----------
+
+  // 统一使用 interface 定义对象类型
+  "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+  // 空接口仅在单继承时允许
+  "@typescript-eslint/no-empty-object-type": ["error", { "allowInterfaces": "with-single-extends" }],
+  // 允许使用 any
+  "@typescript-eslint/no-explicit-any": "off",
+  // 未使用变量校验
+  "@typescript-eslint/no-unused-vars": ["error", {
+    // 允许以下划线开头或名为 ignore 的变量
+    "varsIgnorePattern": "^_|^ignore$",
+    // 忽略 rest 解构同级的兄弟变量（便于从 ...props 排除某些值）
+    "ignoreRestSiblings": true,
+    // 允许函数参数以下划线开头
+    "argsIgnorePattern": "^_",
+    // 捕获错误变量以下划线开头时忽略
+    "caughtErrorsIgnorePattern": "^_"
+  }],
+  // 强制类型导入：import type { Foo } from '...'
+  "@typescript-eslint/consistent-type-imports": ["error", {
+    "prefer": "type-imports",
+    "disallowTypeAnnotations": true,
+    "fixStyle": "separate-type-imports"
+  }],
+
+  // ----------- JSX 排版（@stylistic/jsx-*） -----------
+  
+  "@typescript-eslint/ban-ts-comment": [
+    "error",
+    {
+      "ts-expect-error": "allow-with-description"
+    }
+  ],
+  "@typescript-eslint/explicit-function-return-type": "off",
+  "@typescript-eslint/method-signature-style": [
+    "error",
+    "property"
+  ],
+  "@typescript-eslint/no-array-constructor": "error",
+  "@typescript-eslint/no-dupe-class-members": "error",
+  "@typescript-eslint/no-duplicate-enum-values": "error",
+  "@typescript-eslint/no-dynamic-delete": "off",
+  "@typescript-eslint/no-extra-non-null-assertion": "error",
+  "@typescript-eslint/no-extraneous-class": "off",
+  "@typescript-eslint/no-import-type-side-effects": "error",
+  "@typescript-eslint/no-invalid-void-type": "off",
+  "@typescript-eslint/no-misused-new": "error",
+  "@typescript-eslint/no-namespace": "off",
+  "@typescript-eslint/no-non-null-asserted-nullish-coalescing": "error",
+  "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+  "@typescript-eslint/no-non-null-assertion": "off",
+  "@typescript-eslint/no-redeclare": "off",
+  "@typescript-eslint/no-require-imports": "off",
+  "@typescript-eslint/no-this-alias": "error",
+  "@typescript-eslint/no-unnecessary-type-constraint": "error",
+  "@typescript-eslint/no-unsafe-declaration-merging": "error",
+  "@typescript-eslint/no-unsafe-function-type": "error",
+  "@typescript-eslint/no-unused-expressions": "off",
+  "@typescript-eslint/no-use-before-define": "off",
+  "@typescript-eslint/no-useless-constructor": "off",
+  "@typescript-eslint/no-wrapper-object-types": "error",
+  "@typescript-eslint/prefer-as-const": "error",
+  "@typescript-eslint/prefer-literal-enum-member": "error",
+  "@typescript-eslint/prefer-namespace-keyword": "error",
+  "@typescript-eslint/triple-slash-reference": "off",
+  "@typescript-eslint/unified-signatures": "off"
+
+
 }

@@ -2,7 +2,7 @@
   "name": "test-next",
   "private": true,
   "scripts": {
-    "config": "node ../../dist/index.js --framework next --all",
+    "config": "rimraf eslint.config.mjs && node ../../dist/index.js --framework next --all",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

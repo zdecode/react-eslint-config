@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "config": "node ../../dist/index.js --framework vite --all",
+    "config": "rimraf eslint.config.mjs && node ../../dist/index.js --framework vite --all",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

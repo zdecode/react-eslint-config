@@ -2,7 +2,7 @@
 export async function getUserService(id: string) {
   try {
     return fetch(`/api/user/${id}`)
-  } catch{
+  } catch {
     return '1'
   }
 }
