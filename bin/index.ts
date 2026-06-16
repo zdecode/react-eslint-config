@@ -94,9 +94,7 @@ async function main(): Promise<void> {
   }
 
   // 3. 拼装单文件 + 推导依赖
-  const { content, deps, missing } = assemble({ framework, features })
-  for (const name of missing)
-    p.log.warn(`模板中找不到依赖 ${name} 的版本，已跳过。`)
+  const { content, deps } = assemble({ framework, features })
 
   // 4. 写文件 + 改 package.json
   const userPkgPath = path.join(cwd, 'package.json')

@@ -1,9 +1,6 @@
-import fs from 'node:fs'
-import path from 'node:path'
-import { IMPORT_DEPS, IMPORTS, PEER_DEPS } from './registry'
+import { type ImportKey, PEER, REGISTRY, versionFor } from './registry'
 import { readRuleFile } from './load'
 import { type JsonValue, serialize, serializeEntries } from './serialize'
-import { srcDir } from './paths'
 
 export type Framework = 'next' | 'vite' | 'fallback'
 export interface Features { yml: boolean, mdx: boolean, json: boolean }
@@ -248,32 +245,20 @@ function collectImportKeys(ctx: Ctx): Set<string> {
   return keys
 }
 
-interface DepsTable { dependencies?: Record<string, string>, devDependencies?: Record<string, string> }
-
-function resolveDeps(keys: Set<string>, framework: Framework): { deps: Record<string, string>, missing: string[] } {
-  const depsFile = framework === 'next' ? 'next.deps.json' : 'vite.deps.json'
-  const table = JSON.parse(fs.readFileSync(path.join(srcDir, depsFile), 'utf8')) as DepsTable
-  const versions: Record<string, string> = { ...table.dependencies, ...table.devDependencies }
-
-  const names = new Set<string>()
-  for (const key of keys)
-    names.add(IMPORT_DEPS[key])
-  for (const dep of PEER_DEPS.always)
-    names.add(dep)
-  for (const key of keys) {
-    for (const dep of PEER_DEPS.perImport[key] ?? [])
-      names.add(dep)
-  }
-
+// 直接从 registry 推导包名 + 版本（版本已内联，不再读取外部 deps 文件）
+function resolveDeps(keys: Set<string>, framework: Framework): Record<string, string> {
   const deps: Record<string, string> = {}
-  const missing: string[] = []
-  for (const name of names) {
-    if (versions[name])
-      deps[name] = versions[name]
-    else
-      missing.push(name)
+  for (const key of keys) {
+    const dep = REGISTRY[key as ImportKey]
+    deps[dep.pkg] = versionFor(dep, framework)
   }
-  return { deps, missing }
+  for (const dep of PEER.always)
+    deps[dep.pkg] = versionFor(dep, framework)
+  for (const key of keys) {
+    for (const dep of PEER.perImport[key as ImportKey] ?? [])
+      deps[dep.pkg] = versionFor(dep, framework)
+  }
+  return deps
 }
 
 // ---------------------- 拼装 ----------------------
@@ -281,7 +266,6 @@ function resolveDeps(keys: Set<string>, framework: Framework): { deps: Record<st
 export function assemble({ framework, features }: { framework: Framework, features: Features }): {
   content: string
   deps: Record<string, string>
-  missing: string[]
 } {
   const ctx: Ctx = {
     framework,
@@ -291,9 +275,9 @@ export function assemble({ framework, features }: { framework: Framework, featur
   }
 
   const keys = collectImportKeys(ctx)
-  const importLines = Object.keys(IMPORTS)
+  const importLines = (Object.keys(REGISTRY) as ImportKey[])
     .filter((k) => keys.has(k))
-    .map((k) => IMPORTS[k])
+    .map((k) => REGISTRY[k].import)
     .join('\n')
 
   const blocks: string[] = []
@@ -323,6 +307,6 @@ ${blocks.join('\n\n')}
 ])
 `
 
-  const { deps, missing } = resolveDeps(keys, framework)
-  return { content, deps, missing }
+  const deps = resolveDeps(keys, framework)
+  return { content, deps }
 }

@@ -10,6 +10,7 @@
     "next": "16.2.6"
   },
   "devDependencies": {
+    "@eslint-react/eslint-plugin": "^5.9.0",
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "eslint": "^9.39.4",
