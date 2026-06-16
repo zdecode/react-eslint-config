@@ -1,0 +1,21 @@
+{
+  // ============ 第五类：JSON / JSONC / JSON5 风格 ============
+  // 作用于 **/*.json、**/*.json5、**/*.jsonc
+
+  // 统一 2 空格缩进
+  "jsonc/indent": ["error", 2],
+  // JSON 规范要求双引号
+  "jsonc/quotes": ["error", "double"],
+  // 所有属性名加引号
+  "jsonc/quote-props": ["error", "always"],
+  // 标准 JSON 不允许尾随逗号
+  "jsonc/comma-dangle": ["error", "never"],
+  // 数组方括号内部不加空格
+  "jsonc/array-bracket-spacing": ["error", "never"],
+  // 对象花括号内部加空格
+  "jsonc/object-curly-spacing": ["error", "always"],
+  // 冒号前无空格、后有空格
+  "jsonc/key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
+  // 逗号放在行尾
+  "jsonc/comma-style": ["error", "last"],
+}

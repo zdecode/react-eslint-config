@@ -1,0 +1,17 @@
+{
+  // ============ 第二类：React（react/* 规则） ============
+
+  // 没有子节点的组件强制自闭合：<Comp /> 而不是 <Comp></Comp>
+  "react/self-closing-comp": ["error", {
+    "component": true, // React 组件自闭合
+    "html": false, // 原生 HTML 标签不强制
+  }],
+  // 禁止使用 dangerouslySetInnerHTML
+  "react/no-danger": ["error", {}],
+  // 属性值为字符串时禁止不必要的花括号：size="sm" 而不是 size={"sm"}
+  "react/jsx-curly-brace-presence": ["error", {
+    "props": "never",
+    "children": "never",
+    "propElementValues": "always", // 属性值是 JSX 元素时要求花括号
+  }],
+}

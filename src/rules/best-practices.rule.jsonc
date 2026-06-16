@@ -1,0 +1,28 @@
+{
+  // ============ 第三类：最佳实践 ============
+
+  // 有变量拼接时强制模板字符串，禁止 "hello " + name
+  "prefer-template": "error",
+  // 对象属性/方法强制简写：{ foo } 而不是 { foo: foo }
+  "object-shorthand": ["error", "always"],
+  // 循环条件中的变量必须在循环体内被修改，防止死循环
+  "no-unmodified-loop-condition": "error",
+  // 关闭：不强制保留捕获到的原始错误
+  "preserve-caught-error": "off",
+
+  // ----------- 导入约束（lucide-react 图标命名） -----------
+
+  // AST 选择器：匹配来自 lucide-react 且不以 Icon 结尾的导入成员
+  "no-restricted-syntax": ["error", {
+    "selector": "ImportDeclaration[source.value='lucide-react'] > ImportSpecifier[imported.name=/^(?!.*Icon$).*$/]",
+    "message": "从 'lucide-react' 导入图标时，必须使用以 'Icon' 结尾的成员（例如：使用 'PiIcon' 而不是 'Pi'）。",
+  }],
+  // 通过导入名约束：同样强制 lucide-react 图标必须以 Icon 结尾
+  "no-restricted-imports": ["error", {
+    "paths": [{
+      "name": "lucide-react",
+      "importNames": ["/^(?!.*Icon$).*$/"],
+      "message": "从 'lucide-react' 导入图标时，必须使用以 'Icon' 结尾的成员名（例如：使用 'PiIcon' 而不是 'Pi'）。",
+    }],
+  }],
+}

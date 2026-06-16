@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "bin": "bin/index.mjs",
+  "bin": "dist/index.mjs",
   "files": [
-    "bin",
-    "eslint.next.config.js",
-    "eslint.vite.config.js",
+    "dist",
+    "src/rules",
     "next.deps.json",
     "vite.deps.json"
   ],
   "scripts": {
+    "build": "tsup",
+    "prepack": "tsup",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -19,9 +20,18 @@
   "license": "ISC",
   "packageManager": "pnpm@10.6.2",
   "devDependencies": {
-    "@jsdevtools/version-bump-prompt": "^6.1.0"
+    "@jsdevtools/version-bump-prompt": "^6.1.0",
+    "@types/node": "^25.9.3",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3"
   },
   "dependencies": {
-    "@clack/prompts": "^1.5.1"
+    "@clack/prompts": "^1.5.1",
+    "jsonc-parser": "^3.3.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }
