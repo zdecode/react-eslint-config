@@ -1,16 +1,14 @@
 {
   "compilerOptions": {
     "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "lib": ["ES2022"],
-    "types": ["node"],
+    "jsx": "preserve",
     "strict": true,
-    "noUncheckedIndexedAccess": false,
     "esModuleInterop": true,
-    "verbatimModuleSyntax": true,
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["src", "bin", "tsup.config.ts"]
+  "include": ["app"]
 }

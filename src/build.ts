@@ -3,7 +3,7 @@ import path from 'node:path'
 import { IMPORT_DEPS, IMPORTS, PEER_DEPS } from './registry'
 import { readRuleFile } from './load'
 import { type JsonValue, serialize, serializeEntries } from './serialize'
-import { pkgRoot } from './paths'
+import { srcDir } from './paths'
 
 export type Framework = 'next' | 'vite' | 'fallback'
 export interface Features { yml: boolean, mdx: boolean, json: boolean }
@@ -170,6 +170,10 @@ function renderCore(ctx: Ctx): string {
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+      // 固定 TS 解析根目录为本配置所在目录，避免 monorepo 下「多候选 tsconfigRootDir」报错
+      parserOptions: {
+        tsconfigRootDir: import.meta.dirname,
+      },
     },
     rules: ${serialize(rules, 4)},
   },`
@@ -245,7 +249,7 @@ interface DepsTable { dependencies?: Record<string, string>, devDependencies?: R
 
 function resolveDeps(keys: Set<string>, framework: Framework): { deps: Record<string, string>, missing: string[] } {
   const depsFile = framework === 'next' ? 'next.deps.json' : 'vite.deps.json'
-  const table = JSON.parse(fs.readFileSync(path.join(pkgRoot, depsFile), 'utf8')) as DepsTable
+  const table = JSON.parse(fs.readFileSync(path.join(srcDir, depsFile), 'utf8')) as DepsTable
   const versions: Record<string, string> = { ...table.dependencies, ...table.devDependencies }
 
   const names = new Set<string>()

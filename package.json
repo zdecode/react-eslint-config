@@ -1,33 +1,32 @@
 {
   "name": "@zd~/react-eslint-config",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "bin": "dist/index.mjs",
+  "description": "交互式生成自包含的 ESLint flat config（next / vite / 通用）",
+  "bin": "dist/index.js",
   "files": [
     "dist",
     "src/rules",
-    "next.deps.json",
-    "vite.deps.json"
+    "src/*.deps.json"
   ],
+  "packageManager": "pnpm@10.6.2",
   "scripts": {
     "build": "tsup",
-    "prepack": "tsup",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepack": "tsup"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.6.2",
   "devDependencies": {
+    "@clack/prompts": "^1.5.1",
     "@jsdevtools/version-bump-prompt": "^6.1.0",
     "@types/node": "^25.9.3",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "jsonc-parser": "^3.3.1",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3"
-  },
-  "dependencies": {
-    "@clack/prompts": "^1.5.1",
-    "jsonc-parser": "^3.3.1"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
