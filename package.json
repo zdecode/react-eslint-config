@@ -1,6 +1,6 @@
 {
   "name": "@zdecode/react-eslint-config",
-  "version": "0.0.3",
+  "version": "0.0.4-beta.1",
   "description": "交互式生成自包含的 ESLint flat config（next / vite / 通用）",
   "bin": "dist/index.js",
   "files": [
@@ -13,7 +13,7 @@
     "build": "tsup",
     "prepack": "tsup",
     "eslint": "eslint . --fix",
-    "tag": "bump",
+    "tag": "bump --commit --push",
     "tag:commit": "bump patch --tag --commit --push"
   },
   "keywords": [],
