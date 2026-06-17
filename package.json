@@ -5,7 +5,8 @@
   "bin": "dist/index.js",
   "files": [
     "dist",
-    "src/rules"
+    "src/rules",
+    "README.md"
   ],
   "packageManager": "pnpm@10.6.2",
   "scripts": {
@@ -16,8 +17,22 @@
     "tag": "bump --tag --commit --push",
     "tag:commit": "bump patch --tag --commit --push"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "eslint-flat-config",
+    "react",
+    "typescript",
+    "next",
+    "vite",
+    "scaffold",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zdecode/react-eslint-config"
+  },
+  "author": "zhuddan",
   "license": "ISC",
   "devDependencies": {
     "@clack/prompts": "^1.5.1",
