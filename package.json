@@ -13,7 +13,8 @@
     "build": "tsup",
     "prepack": "tsup",
     "eslint": "eslint . --fix",
-    "tag": "bump patch --tag --commit --push"
+    "tag": "bump",
+    "tag:commit": "bump patch --tag --commit --push"
   },
   "keywords": [],
   "author": "",
